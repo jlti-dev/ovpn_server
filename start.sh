@@ -127,6 +127,15 @@ else
 	chmod u+s $iptables
 	chmod +x /docker/firewall.sh
 fi
+if [ -f "/docker/ip-routes.txt" ]; then
+	echo "--------------------------------------------------"
+	echo "found /docker/ip-routes.txt"
+	while read -r line ; do
+		iproute="ip route add $line"
+		echo "$iproute"
+		$($iproute)
+	done < "/docker/ip-routes.txt"
+fi
 echo "replacing current process"
 echo "--------------------------------------------------"
 echo "--------------------------------------------------"

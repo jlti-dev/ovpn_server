@@ -32,29 +32,46 @@ This option is enabled by setting the variable explicitly to true (MASQUERADE=tr
 ### File: /docker/ca.crt
 
 Can be mounted as read-only.
+
 This file is the certificate of your Certificate Authority and is crucial for the image to work.
 
 ### File: /docker/crl.pem
 
 Can be mounted as read-only.
+
 This file is the certificate revocation list and is crucial for the image to work.
 
 ### File: /docker/server.crt
 
 Can be mounted as read-only.
+
 This file is your server certificate and therefor is crucial for the image to work.
 It must be signed by the ca from /docker/ca.crt, however this is not checked.
 
 ### File: /docker/server.key
 
 Can be mounted as read-only.
+
 This file is your server private key and therefor is crucial for the image to work.
-It should be kept safe and a secret.
+
+_It should be kept safe and a secret._
 
 ### File: /docker/ovpn.conf
 
 Can be mounted as read-only.
+
 This file is your primary config file and therefor is crucial for the image to work.
+
+### File: /docker/ip-routes.txt
+
+Can be mounted as read-only.
+
+This file is a way to enable individual routing, to reach other subnets than those represented by OpenVPN.
+The file is line based, each line is prefixed by "ip route". A valid line would be:
+
+8.8.8.8 dev eth0
+
+8.8.8.8 via 8.8.4.4
 
 ### Folder: /docker/ccd
 
