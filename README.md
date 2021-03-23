@@ -66,5 +66,6 @@ If the folder does not exists, openvpn command will not be extended to use ccd.
 ### Folder: /docker/logs
 
 Can NOT be mounted as read-only, as you want logs to be written.
+This folder should have write access for nobody:nogroup.
 If this folder is not provided, the firewall script will not log (so this makes only sense, when you set the FIREWALL).
 The firewall will log a file for every common_name. 
