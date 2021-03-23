@@ -1,7 +1,11 @@
 #!/bin/sh
 source /docker/firewall_function.sh
 if [ -d "/docker/logs" ]; then
-	log="/docker/logs/$3"
+	if [ "$3" == "" ]; then
+		log="/docker/logs/server"
+	else
+		log="/docker/logs/$3"
+	fi
 	echo "$(date +[%Y-%m-%d]%T) starting protocol" >> $log
 else
 	log="/dev/null"
