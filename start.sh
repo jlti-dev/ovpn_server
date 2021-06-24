@@ -20,28 +20,28 @@ else
 	echo "did not find config file at /docker/ovpn.conf"
 	exit 1
 fi
-if [ -f "/docker/ca.crt" ]; then
-	cmd="$cmd --ca /docker/ca.crt"
+if [ -f "/docker/server/ca.crt" ]; then
+	cmd="$cmd --ca /docker/server/ca.crt"
 else
-	echo "did not find CA certificate at /docker/ca.crt"
+	echo "did not find CA certificate at /docker/server/ca.crt"
 	exit 1
 fi
-if [ -f "/docker/server.crt" ]; then
-	cmd="$cmd --cert /docker/server.crt"
+if [ -f "/docker/server/server.crt" ]; then
+	cmd="$cmd --cert /docker/server/server.crt"
 else
-	echo "did not find server certificate at /docker/server.crt"
+	echo "did not find server certificate at /docker/server/server.crt"
 	exit 1
 fi
-if [ -f "/docker/server.pem" ]; then
-	cmd="$cmd --key /docker/server.pem"
+if [ -f "/docker/server/server.key" ]; then
+	cmd="$cmd --key /docker/server/server.key"
 else
-	echo "did not find key file at /docker/server.pem"
+	echo "did not find key file at /docker/server/server.key"
 	exit 1
 fi
-if [ -f "/docker/crl.pem" ]; then
-	cmd="$cmd --crl-verify /docker/crl.pem"
+if [ -f "/docker/server/crl.pem" ]; then
+	cmd="$cmd --crl-verify /docker/server/crl.pem"
 else
-	echo "not adding --crl-verify (file: /docker/crl.pem)"
+	echo "not adding --crl-verify (file: /docker/server/crl.pem)"
 fi
 if [ -d "/docker/ccd" ]; then
 	echo "adding client-config-dir"
