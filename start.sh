@@ -103,8 +103,8 @@ $($iptab)
 echo "--------------------------------------------------"
 if [ "$FIREWALL" == "false" ]; then
 	echo "Not doing any iptables"
-else	
-	echo "creating tempfile for iptables (public routes"
+elif [ grep "push \"route" /docker/ovpn.conf ]	
+	echo "creating tempfile for iptables (public routes)"
 	tmp=$(mktemp)
 	grep "push \"route" /docker/ovpn.conf >> $tmp
 	while read -r line ; do
@@ -126,6 +126,8 @@ else
 	iptables=$(which iptables)
 	chmod u+s $iptables
 	chmod +x /docker/firewall.sh
+else
+	echo "no routes found in /docker/ovpn.conf"
 fi
 if [ -f "/docker/ip-routes.txt" ]; then
 	echo "--------------------------------------------------"
