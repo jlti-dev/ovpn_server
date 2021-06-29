@@ -103,7 +103,7 @@ $($iptab)
 echo "--------------------------------------------------"
 if [ "$FIREWALL" == "false" ]; then
 	echo "Not doing any iptables"
-elif [ grep "push \"route" /docker/ovpn.conf ]	
+elif [ grep "push \"route" /docker/ovpn.conf ]; then	
 	echo "creating tempfile for iptables (public routes)"
 	tmp=$(mktemp)
 	grep "push \"route" /docker/ovpn.conf >> $tmp
