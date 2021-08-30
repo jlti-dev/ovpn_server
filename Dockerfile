@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache openvpn iptables
+RUN apk add --no-cache openvpn iptables openssl
 
 WORKDIR /docker
 VOLUME /docker/server

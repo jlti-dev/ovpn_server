@@ -49,6 +49,16 @@ if [ -d "/docker/ccd" ]; then
 else
 	echo "not adding client-config-dir (folder: /docker/ccd)"
 fi
+
+if [ "$AUTH_PW" == "true" ]; then
+	echo "You are using additional security through USER-PW Authentication"
+	echo "You should mount the file to /docker/server/pw"
+	echo "If the file is not mounted, you will not be able to connect, as all authorizations fail"
+	cmd="$cmd --auth-user-pass-verify /docker/password.sh via-env"
+else
+	echo "You could use AUTH_PW and add an additional layer of security"
+fi
+
 if [ "$FIREWALL" == "false" ]; then
 	echo "You turned of the firewall. Please make sure your server is safe!"
 else
@@ -129,6 +139,7 @@ elif [ grep "push \"route" /docker/ovpn.conf ]; then
 else
 	echo "no routes found in /docker/ovpn.conf"
 fi
+
 if [ -f "/docker/ip-routes.txt" ]; then
 	echo "--------------------------------------------------"
 	echo "found /docker/ip-routes.txt"
