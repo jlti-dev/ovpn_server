@@ -5,6 +5,9 @@ if [ -d "/docker/logs" ]; then
 else
 	log="/dev/null"
 fi
+echo "$(date +[%Y-%m-%d]%T) Reading tempfile $1" >> $log
+username="$(head -n 1 $1)"
+password="$(tail -n 1 $1)"
 echo "$(date +[%Y-%m-%d]%T) Checking Authentication" >> $log
 if [ -z "$username" ]; then
 	echo "$(date +[%Y-%m-%d]%T) No user specified" >> $log

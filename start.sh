@@ -54,7 +54,7 @@ if [ "$AUTH_PW" == "true" ]; then
 	echo "You are using additional security through USER-PW Authentication"
 	echo "You should mount the file to /docker/server/pw"
 	echo "If the file is not mounted, you will not be able to connect, as all authorizations fail"
-	cmd="$cmd --auth-user-pass-verify /docker/password.sh via-env"
+	cmd="$cmd --auth-user-pass-verify /docker/password.sh via-file"
 else
 	echo "You could use AUTH_PW and add an additional layer of security"
 fi
