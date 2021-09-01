@@ -18,10 +18,10 @@ if [ -z "$password"  ]; then
 	exit 1
 fi
 echo "$(date +[%Y-%m-%d]%T) username is $username" >> $log
-pw="$(cat $file | grep $username | cut --delimiter=: --fields 2)"
-algo="$(echo $pw | cut --delimiter=$ --fields 2)"
-salt="$(echo $pw | cut --delimiter=$ --fields 3)"
-hash="$(echo $pw | cut --delimiter=$ --fields 4)"
+pw="$(cat $file | grep $username | cut -d : -f 2)"
+algo="$(echo $pw | cut -d $ - 2)"
+salt="$(echo $pw | cut -d $ - 3)"
+hash="$(echo $pw | cut -d $ - 4)"
 
 if [ -z "$algo" ]; then
 	echo "$(date +[%Y-%m-%d]%T) Algorithm not determined" >> $log
