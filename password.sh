@@ -19,9 +19,9 @@ if [ -z "$password"  ]; then
 fi
 echo "$(date +[%Y-%m-%d]%T) username is $username" >> $log
 pw="$(cat $file | grep $username | cut -d : -f 2)"
-algo="$(echo $pw | cut -d $ - 2)"
-salt="$(echo $pw | cut -d $ - 3)"
-hash="$(echo $pw | cut -d $ - 4)"
+algo="$(echo $pw | cut -d $ -f 2)"
+salt="$(echo $pw | cut -d $ -f 3)"
+hash="$(echo $pw | cut -d $ -f 4)"
 
 if [ -z "$algo" ]; then
 	echo "$(date +[%Y-%m-%d]%T) Algorithm not determined" >> $log
